@@ -29,7 +29,7 @@ def get_text_messages(message):
 
     weather_info = weather_requester.get_weather(message_text)
     if weather_info is None:
-        bot.send_message(message.from_user.id, 'Кажется такого города я не нашел, попробуйте назвать другой город.')
+        bot.send_message(message.from_user.id, f'Город с названием {message_text} не найден. Попробуйте снова.')
         return
 
     answer = construct_weather_answer(message_text, weather_info)
@@ -37,9 +37,10 @@ def get_text_messages(message):
 
 
 def process_start(message):
-    bot.send_message(message.from_user.id, f'Привет! Приятно познакомитсья, {message.from_user.first_name}. ' +
-                     f'Я могу написать погоду в городе который ты попросишь. ' +
-                     f'Напиши название города и я узнаю погоду для тебя.')
+
+    bot.send_message(message.from_user.id, f'Привет, {message.from_user.first_name}.' +
+                     f' Я - бот, который расскажет тебе о погоде на данный момент в любом городе.' +
+                     f' Для этого достаточно ввести наименование города, и я узнаю погоду для тебя.')
 
 
 def construct_weather_answer(city_name: str, weather_info: WeatherInfo) -> str:
