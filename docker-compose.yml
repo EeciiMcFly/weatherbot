@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  weather-bot:
+    build:
+      context: .
+      target: release
+    container_name: weather-bot
+    volumes:
+      - .:/app
